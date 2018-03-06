@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        maven { url "http://nexus.enn.cn/content/groups/public/" }
+        mavenCentral()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+jar {
+    baseName = 'disruptor-demo'
+    version =  '1.0'
+}
+
+repositories {
+    maven { url "http://nexus.enn.cn/content/groups/public/" }
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	// 神奇的disruptor
+    compile("com.lmax:disruptor:3.4.0")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+    
+    test {
+        java {
+            srcDir 'test/main/java'
+        }
+        resources {
+            srcDir 'test/main/resources'
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
